@@ -97,11 +97,6 @@ print("\N{CSI}2+z", end="", flush=True)  # DECPKA 5-87
 print("Having a little nap just in case")
 time.sleep(0.1)
 
-print("Swapping ESC and capslock")
-
-# Swap ESC and Caps
-# print('\N{DCS}"z110/30;30/110;\N{ST}')  # DECCKD 5-31
-
 keydefs: Dict[int, str] = {}
 for src in KEYMAP.values():
     keydefs[src] = get_keydef(src)
@@ -119,3 +114,8 @@ for dest, src in KEYMAP.items():
         end="",
         flush=True,
     )  # DEKPAK 5-78
+
+# Swap ESC and Caps
+print("Swapping ESC and capslock")
+print('\N{DCS}"z30/110\N{ST}')  # DECCKD 5-31
+print('\N{DCS}"z110/30\N{ST}')  # DECCKD 5-31
